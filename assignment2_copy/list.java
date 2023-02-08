@@ -4,6 +4,8 @@ import java.io.File; //This is the class for opening and managing files
 import java.io.FileNotFoundException; //This is a class to handle File related errors 
 import java.io.IOException; //This is a class to handle I/O related errors
 import java.util.*; //This class reads things, like text files
+import edu.princeton.cs.algs4.Insertion; //This is the class for Insertion Sort 
+import edu.princeton.cs.algs4.Selection; //This is the class for Selection Sort
 
 class Clist{
 
@@ -82,28 +84,36 @@ class Clist{
 		return sort_order;
 	}
 	//"sort_by(string)" takes the desired sort type and kickstarts the correlating sort method
+	//Essentially a wrapper function with 3 child functions
 	public void sort_by(String sort_name, String sort_type){
 		sort_type = sort_type.toLowerCase();
+		sort_name = sort_name.toLowerCase();
 		if(sort_type.equals("default") || sort_type.equals("age")) age_sort(sort_name);	
-		else if(sort_type.equals("firstname")) first_name_sort();	
-		else if(sort_type.equals("lastname")) last_name_sort();	
+		else if(sort_type.equals("firstname")) first_name_sort(sort_name);	
+		else if(sort_type.equals("lastname")) last_name_sort(sort_name);	
 		else System.out.println("Sort Type not recognized...");
 	}
 	//"age_sort()", "first_name_sort()", and "last_name_sort()" are the sort methods
 	public void age_sort(String sort_name){
 		sort_name = sort_name.toLowerCase();
 		System.out.println("Sorting by age:");
-		Arrays.sort(candidate_list);
+		if(sort_name.equals("insertion")) Insertion.sort(candidate_list);	
+		else Selection.sort(candidate_list);
+		//Arrays.sort(candidate_list);
 	}
-	public void first_name_sort(){
+	public void first_name_sort(String sort_name){
 		System.out.println("Sorting by first name:");
 		Comparator<Candidate> candidate_order = new FirstNameComparator(sort_order);
-		Arrays.sort(candidate_list, candidate_order);
+		if(sort_name.equals("insertion")) Insertion.sort(candidate_list, candidate_order);	
+		else Selection.sort(candidate_list, candidate_order);
+		//Arrays.sort(candidate_list, candidate_order);
 	}
-	public void last_name_sort(){
+	public void last_name_sort(String sort_name){
 		System.out.println("Sorting by last name:");
 		Comparator<Candidate> candidate_order = new LastNameComparator(sort_order);
-		Arrays.sort(candidate_list, candidate_order);
+		if(sort_name.equals("insertion")) Insertion.sort(candidate_list, candidate_order);	
+		else Selection.sort(candidate_list, candidate_order);
+		//Arrays.sort(candidate_list, candidate_order);
 
 	}
 }

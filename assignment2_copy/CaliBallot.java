@@ -31,7 +31,7 @@ public class CaliBallot{
 			System.out.println("sort_name must be \"Selection\" or \"Insertion\"");
 			return true;
 		}
-		if((!"default".equals(sort_type)) && (!"firstname".equals(sort_type)) && (!"lastname".equals(sort_type))){
+		if((!"age".equals(sort_type)) && (!"default".equals(sort_type)) && (!"firstname".equals(sort_type)) && (!"lastname".equals(sort_type))){
 			System.out.println("sort_criteria must be \"Default\" or \"FirstName\" or \"LastName\"");
 			return true;
 		}
